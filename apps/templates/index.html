@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-center my-sm-4">
+        <div class="list-group" style="width: 100%;">
+            <li class="list-group-item bg-secondary text-white">
+                <div class="d-flex w-100 justify-content-between align-middle p-sm-1">
+                    <h5>Todo List</h5>
+                    <a href="{{url_for('view.new')}}" class="btn-sm btn-success"><i class="fas fa-plus-square"></i></a>
+                </div>
+            </li>
+            {%for item in todo%}
+                {% if item.id % 2 == 0 %}
+                <a href="{{url_for('view.update',_id = item.id)}}" class="list-group-item list-group-item-action list-group-item-secondary">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">{{item.title}}</h5>
+                    </div>
+                    <small class="text-muted">{{item.remarks}}</small>
+                  </a>
+                {% else %}
+                <a href="{{url_for('view.update',_id = item.id)}}" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1">{{item.title}}</h5>
+                    </div>
+                    <small class="text-muted">{{item.remarks}}</small>
+                  </a>
+                {% endif %}
+            {%endfor%}
+        </div>
+    </div>
+</div>
+{% endblock %}
